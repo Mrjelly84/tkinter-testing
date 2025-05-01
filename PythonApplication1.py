@@ -1,3 +1,4 @@
+from pydoc import text
 import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog
@@ -93,34 +94,41 @@ class InputForm(ttk.Frame):
         self.entry.bind("<Return>", self.add_to_list)
 
         
-        self.entry_btn = ttk.Button(self, text="Add", command=self.add_to_list)
+        self.entry_btn = ttk.Button(self, text="Add Line", command=self.add_to_list)
         self.entry_btn.grid(row=0, column=1)
 
+        self.entry_btn5 = ttk.Button(self, text="Remove Line", command=self.remove_to_list)
+        self.entry_btn5.grid(row=0, column=2)
+
         self.entry_btn2 = ttk.Button(self, text="Clear", command=self.clear_list)
-        self.entry_btn2.grid(row=0, column=2)
+        self.entry_btn2.grid(row=0, column=3)
 
         self.entry_btn3 = ttk.Button(self, text="Save", command=lambda: save_list(self, self.text_list))
-        self.entry_btn3.grid(row=0, column=3)
+        self.entry_btn3.grid(row=0, column=4)
 
         self.entry_btn4 = ttk.Button(self, text="Load", command=lambda: load_list(self, self.text_list))
-        self.entry_btn4.grid(row=0, column=4)
+        self.entry_btn4.grid(row=0, column=5)
 
         self.text_list = tk.Listbox(self)
-        self.text_list.grid(row=1, column=0, columnspan=5, sticky="nsew")
+        self.text_list.grid(row=1, column=0, columnspan=6, sticky="nsew")
        
 
     
     def add_to_list(self, _event=None):
-        """Adds the text from the entry widget to the listbox."""
+        
         text = self.entry.get()
         if text:
             self.text_list.insert(tk.END, text)
             self.entry.delete(0, tk.END)
 
     def clear_list(self):
-        """Clears all items from the listbox."""
+        
         self.text_list.delete(0, tk.END)
-    # --- END RESTORED METHODS ---
+    
+    def remove_to_list(self):
+        selected_indices = self.text_list.curselection()
+        for i in reversed(selected_indices):
+            self.text_list.delete(i)
 
 
 # --- Load/Save Functions ---
