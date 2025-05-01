@@ -3,7 +3,7 @@ from tkinter import ttk
 from tkinter import filedialog
 import csv
 
-# --- Login Window Class ---
+# --- Login Window Class
 class LoginWindow(tk.Toplevel):
     def __init__(self, parent):
         # print("--> Inside LoginWindow __init__") # Keep prints for debugging if needed
@@ -36,7 +36,7 @@ class LoginWindow(tk.Toplevel):
 
         self.username_entry.bind("<Return>", lambda event=None: login_button.invoke())
         self.password_entry.bind("<Return>", lambda event=None: login_button.invoke())
-        # print("--> LoginWindow __init__ finished")
+      
 
 
     def perform_login(self):
@@ -71,7 +71,7 @@ class Application(tk.Tk):
 
         frame = InputForm(self) # InputForm is created here
         frame.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
-        # print("--> Application __init__ finished") # Keep prints if needed
+       
 
 
     def show_main_window(self):
@@ -89,10 +89,10 @@ class InputForm(ttk.Frame):
 
         self.entry = ttk.Entry(self)
         self.entry.grid(row=0, column=0, sticky="ew")
-        # CORRECTED: self.add_to_list now exists in this class
+       
         self.entry.bind("<Return>", self.add_to_list)
 
-        # CORRECTED: self.add_to_list and self.clear_list now exist
+        
         self.entry_btn = ttk.Button(self, text="Add", command=self.add_to_list)
         self.entry_btn.grid(row=0, column=1)
 
@@ -107,10 +107,9 @@ class InputForm(ttk.Frame):
 
         self.text_list = tk.Listbox(self)
         self.text_list.grid(row=1, column=0, columnspan=5, sticky="nsew")
-        # print("--> InputForm __init__ finished") # Keep prints if needed
+       
 
-    # --- RESTORED METHODS ---
-    # These methods were missing and caused the AttributeError
+    
     def add_to_list(self, _event=None):
         """Adds the text from the entry widget to the listbox."""
         text = self.entry.get()
@@ -184,22 +183,21 @@ def save_list(parent_window, listbox_widget):
 
 # --- Main Function ---
 def main():
-    # print("--> Starting main function...") # Keep prints if needed
+    
     app = Application()
     # print("--> Application instance created.") # Keep prints if needed
 
     login_window = LoginWindow(app)
-    # print("--> LoginWindow instance created.") # Keep prints if needed
+   
 
     login_window.protocol("WM_DELETE_WINDOW", app.quit)
-    # print("--> LoginWindow WM_DELETE_WINDOW protocol set.") # Keep prints if needed
+    
 
-    # print("--> Starting mainloop...") # Keep prints if needed
-    app.mainloop() # This should block until the root window is closed
-    # print("--> Mainloop finished. Application exiting.") # Keep prints if needed
+    
+    app.mainloop() 
+    
 
 
 if __name__ == "__main__":
-    # You can remove the print statements now if you don't need them for debugging
-    # They were helpful for tracing the earlier issue.
+   
     main()
