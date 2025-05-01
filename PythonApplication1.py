@@ -75,13 +75,13 @@ class Application(tk.Tk):
 
 
     def show_main_window(self):
-        # print("--> Showing main application window...") # Keep prints if needed
+      
         self.deiconify()
 
-# --- InputForm Class (CORRECTED - methods added back) ---
+# --- InputForm Class
 class InputForm(ttk.Frame):
     def __init__(self, parent):
-        # print("--> Inside InputForm __init__") # Keep prints if needed
+       
         super().__init__(parent)
 
         self.columnconfigure(0, weight=1)
